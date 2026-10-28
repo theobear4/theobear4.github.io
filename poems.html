@@ -1,20 +1,164 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>my poems / poeziile mele</title>
-    <link rel="stylesheet" href="styles.css"/>
-    <style> 
-        .title {
-            margin:0 auto;
-        }
-    </style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: my poems</title>
+        <link rel="stylesheet" href="styles.css"/>
+        <style>
+            :root {
+                --oval-k: 1.414;    /* oval size / text size (1.414 is the smallest that still fits the corners) */
+                --oval-ratio: 0.8; /* oval w / h, same as the index one (360 / 448 - the a & b vars in the script) */
+                --oval-w: min(360px, calc(100vw - 40px)); /* oval w, same as the index one. shrinks on mobile */
+            }
 
-<body>
-    <div class="main-container">
-        <p>i started writing poetry at 16. i write in english and romanian.</p>
-        <img style="width: 50%;" src="assets/theobear.jpg"></img>
-        <a href="bears/hands.html">Hands</a>
-    </div>
-</body>
+            .title {
+                margin: 0 auto 1em;
+                padding-bottom: 0.2em;
+                border-bottom: 3px double #000;
+                text-align: center;
+            }
+
+            .main-container {
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* hexes go here, one canvas for all of them (explanation in script lol) */
+            #beehive {
+                position: absolute;
+            }
+
+            .content {
+                position: relative;
+                z-index: 1;
+                box-sizing: border-box;
+                width: calc(var(--oval-w) / var(--oval-k));
+                padding: 20px 16px;
+            }
+
+            .list {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 1em;
+            }
+            .list li {
+                display: flex;
+                align-items: baseline;
+                gap: 0.5em;
+                margin-bottom: 0.7em;
+            }
+            .list li::after { /* dots between the title and the date */
+                content: "";
+                order: 1;
+                flex: 1;
+                border-bottom: 1px dotted #000;
+            }
+            
+            .date {
+                order: 2;
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main-container">
+            <canvas id="beehive"></canvas>
+            <div class="content">
+                <h1 class="title">my poems</h1>
+                <ul class="list">
+                    <li><a class="link" href="bears/hands.html">hands</a> <span class="date">10 october 2026</span></li>
+                    <li><a class="link" href="bears/he_said_how_about_we_play_a_game.html">[he said how about we play a game]</a> <span class="date">17 october 2026</span></li>
+                    <li><a class="link" href="bears/in_my_head_there_is_a_lighthouse.html">[in my head there is a lighthouse]</a> <span class="date">july 2025</span></li>
+
+                </ul>
+                <br>
+                <div class="line">
+                    <a class="link" href="/">homepage</a> ⌂
+                </div>
+            </div>
+        </div>
+        <script>
+            // we use a 2d canvas instead of making a div for each hex since it was laggy as hell at this scale
+            
+            const w = 20, h = 24;   // hex w and h
+            const dx = 22, dy = 20; // spacing between hex
+            const gap = 8;          // space between the oval and the hexes
+
+            const container = document.querySelector(".main-container");
+            const beehive = document.getElementById("beehive");
+            const content = document.querySelector(".content");
+            const ctx = beehive.getContext("2d");
+
+            function build() {
+                const styles = getComputedStyle(document.documentElement);
+                const k = parseFloat(styles.getPropertyValue("--oval-k"));
+
+                const ratio = parseFloat(styles.getPropertyValue("--oval-ratio"));
+
+                // oval dims. the width is fixed, the height is the index one or more if the list is long
+                const a = content.offsetWidth * k / 2;
+                const b = Math.max(content.offsetHeight * k / 2, a / ratio);
+
+                // room above and below for the oval
+                content.style.marginBlock = (b - content.offsetHeight / 2 + 24) + "px";
+
+                const width = container.offsetWidth;
+                const height = container.offsetHeight;
+
+                const cx = content.offsetLeft + content.offsetWidth / 2;
+                const cy = content.offsetTop + content.offsetHeight / 2;
+
+                // canvas is bigger than the page so the hexes go past the edges
+                const pad = 40;
+                beehive.style.left = -pad + "px";
+                beehive.style.top = -pad + "px";
+                beehive.style.width = (width + 2 * pad) + "px";
+                beehive.style.height = (height + 2 * pad) + "px";
+
+                // canvas resolution, times dpr so it's sharp on phones
+                const dpr = window.devicePixelRatio || 1;
+                beehive.width = (width + 2 * pad) * dpr;
+                beehive.height = (height + 2 * pad) * dpr;
+                ctx.scale(dpr, dpr);
+                ctx.translate(pad, pad); // 0, 0 is the corner of the page again
+
+                // hex gen
+                ctx.fillStyle = "rgb(231, 182, 228)";
+                ctx.beginPath();
+                // a hex column sits dead center, so the left and right sides match
+                const x0 = (width / 2 - w / 2) % dx;
+
+                for (let r = -3; r * dy < height + pad; r++) {
+                    for (let c = -4; x0 + c * dx < width + pad; c++) {
+                        const x = x0 + c * dx + (r % 2) * (dx / 2);
+                        const y = r * dy;
+
+                        const nx = (x + w / 2 - cx) / (a + gap);
+                        const ny = (y + h / 2 - cy) / (b + gap);
+
+                        if (nx * nx + ny * ny > 1) {
+                            ctx.moveTo(x + w / 2, y);
+                            ctx.lineTo(x + w, y + h / 4);
+                            ctx.lineTo(x + w, y + h * 3 / 4);
+                            ctx.lineTo(x + w / 2, y + h);
+                            ctx.lineTo(x, y + h * 3 / 4);
+                            ctx.lineTo(x, y + h / 4);
+                            ctx.closePath();
+                        }
+                    }
+                }
+                ctx.fill();
+
+                // oval on top, covers any hex that sticks into it
+                ctx.fillStyle = "#fbdbff";
+                ctx.beginPath();
+                ctx.ellipse(cx, cy, a, b, 0, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+
+            window.addEventListener("load", build);
+            window.addEventListener("resize", build);
+        </script>
+    </body>
 </html>

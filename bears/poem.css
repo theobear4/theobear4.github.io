@@ -1,0 +1,97 @@
+:root {
+    --px: 70px;  /* space between the side lines and the text */
+    --tw: 40ch;  /* text width */
+}
+
+.frame {
+    --cw: 200px; /* corner w */
+    --ch: 255px; /* corner h */
+    --w: 3px;    /* line thickness */
+    --g: 6px;    /* gap between line ends and the corner img */
+    --py: 130px; /* vertical padding, clears the flower cluster only */
+    /*
+                   --px and --tw were moved to the root scope so we can use them in the gallery's css too
+   */
+
+    position: relative;
+    box-sizing: border-box;
+    width: min(calc(var(--tw) + 2 * var(--px)), 100%); /* text column + padding, capped at screen width */
+    max-width: 100%;
+    min-width: calc(2 * var(--cw) + var(--g));
+    aspect-ratio: 1 / 1.4; /* legit am furat aspect ratio-ul de la o pagină europeană (1/sqrt(2)). sper că va fi ok lol */
+    padding: var(--py) var(--px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.corner {
+    position: absolute;
+    width: var(--cw);
+    height: var(--ch);
+}
+.tl     { top: 0;    left: 0;                            }
+.tr     { top: 0;    right: 0; transform: scaleX(-1);    }
+.br     { bottom: 0; right: 0; transform: scale(-1, -1); }
+.bl     { bottom: 0; left: 0;  transform: scaleY(-1);    }
+
+.bline { position: absolute; background: #000; }
+
+/* start below the top corners and end above the bottom corners */
+.bleft, .bright {
+    top: calc(var(--ch) + var(--g));
+    bottom: calc(var(--ch) + var(--g));
+    width: var(--w);
+}
+/*
+               le pun cu 5 pixeli înspre centru să arate ca-n poză, dar probabil ar trebui să editez
+               poza propriu-zisă în loc să fac asta. #TBD
+*/
+.bleft  { left: 5px; }
+.bright { right: 5px; }
+
+.content {
+    text-align: left;
+}
+.content h1 {
+    text-align: center;
+    margin: 0;
+}
+.date {
+    position: absolute;
+    right: var(--px);
+    bottom: calc(var(--py) / 2 + 10px); /* + 10px să nu fie prea aproape de flori */
+    margin: 0;
+    font-style: italic;
+}
+
+@media (max-width: 520px) {
+    :root { --px: 40px; }
+    
+    .frame {
+        --cw: 120px;
+        --ch: 153px;
+        --py: 80px;
+        --g: 4px;
+    }
+    .left  { left: 3px; }
+    .right { right: 3px; }
+}
+
+.gallery {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.gallery img {
+    width: auto;
+    height: 200px;
+    max-width: 100%;
+    max-height: 90vh;
+    display: block;
+    cursor: pointer;
+}

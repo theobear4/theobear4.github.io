@@ -1,10 +1,37 @@
 body {
     background-color: #fbdbff;
+    margin: 0;
+    width: 100%;
+    overflow-x: clip;
 }
 
 .main-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+a.link {
+    font-style: italic;
+}
+a.link:link {
+    color: #ad45a7;
+}
+a.link:visited {
+    color: #ad45a7;
+}
+a.link:hover {
+    color: #a6009b;
 }

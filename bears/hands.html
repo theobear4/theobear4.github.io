@@ -1,25 +1,46 @@
-<!DOCTYPE html>
 <html>
-
-<head>
-    <title>theobear: poeziile mele / my poetry</title>
-    <link rel="stylesheet" href="../styles.css" />
-    <style>
-        .title {
-            margin: 0 auto;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="main-container">
-        <h1 class="title">hands</h1>
-        <p>yet again<br>the moment's been gifted away<br> i remained endowed<br>to the lack in your hands<br>with whatever's left in mine.</p>
-        <p>in that abscence<br>has been planted a kiss<br>sickeningly sweet.</p>
-        <p>patters of metal and wood<br>now pre-occupy not rooms<br>but interstitial corners<br>between wrinkles<br>and become<br>a brother-tongue of mine.</p>
-        <p>a blond face on a blond boy<br>with nothing in his palms<br>but a closed fist.</p>
-        <img style="width: 50%;" src="../assets/georgia_o_keeffe_hand_1918_alfred_stieglitz.jpg"></img>
-    </div>
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: hands</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>hands</h1>
+                    <p>yet again<br>the moment's been gifted away<br>i remained endowed<br>to the lack in your hands<br>with whatever's left in mine.</p>
+                    <p>in that abscence<br>has been planted a kiss<br>sickeningly sweet.</p>
+                    <p>patterns of metal and wood<br>now pre-occupy not rooms<br>but interstitial corners<br>between wrinkles<br>and become<br>a brother-tongue of mine.</p>
+                    <p>a blond face on a blond boy<br>with nothing in his palms<br>but a closed fist.</p>
+                </div>
+                <small class="date">10 october 2026</small>
+            </div>
+            <br>
+            <div class="gallery">
+                <img src="/assets/poem_gallery/hands/georgia_o_keeffe_hand_1918_alfred_stieglitz.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
 </html>
