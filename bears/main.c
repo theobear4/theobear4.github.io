@@ -33,14 +33,17 @@ static char* read_file(const char* filename) {
     return buf;
 }
 
-static char* non_evil_strdup(const char* s) {
+static char* non_evil_strdup(const char* s)
+{
     size_t len = strlen(s);
     char* out = malloc(len + 1);
     memcpy(out, s, len + 1);
     return out;
 }
 
-static char* replace_all(char* src, const char* pattern, const char* text) {
+// replaces EVERY occurrence of pattern, takes ownership of src (frees it)
+static char* replace_all(char* src, const char* pattern, const char* text)
+{
     size_t pat_len  = strlen(pattern);
     size_t text_len = strlen(text);
 
@@ -69,7 +72,8 @@ static char* replace_all(char* src, const char* pattern, const char* text) {
     return out;
 }
 
-static char* escape_html(const char* s) {
+static char* escape_html(const char* s)
+{
     size_t len = 0;
     for (const char* p = s; *p; p++)
     {
@@ -91,32 +95,61 @@ static char* escape_html(const char* s) {
     return out;
 }
 
-static void append_str(char** buf, size_t* len, const char* text) {
+// html collapses leading spaces, so turn them into &nbsp; (a tab becomes 4)
+static char* keep_indents(const char* s)
+{
+    char* out = malloc(strlen(s) * 24 + 1);
+    char* w = out;
+
+    int line_start = 1;
+    for (const char* p = s; *p; p++)
+    {
+        if (line_start && *p == ' ')
+        {
+            memcpy(w, "&nbsp;", 6);
+            w += 6;
+        }
+        else if (line_start && *p == '\t')
+        {
+            for (int k = 0; k < 4; k++)
+            {
+                memcpy(w, "&nbsp;", 6);
+                w += 6;
+            }
+        }
+        else
+        {
+            *w++ = *p;
+            line_start = (*p == '\n');
+        }
+    }
+    *w = 0;
+    return out;
+}
+
+static void append_str(char** buf, size_t* len, const char* text)
+{
     size_t add = strlen(text);
     *buf = realloc(*buf, *len + add + 1);
     memcpy(*buf + *len, text, add + 1);
     *len += add;
 }
 
-static void free_PoemData(PoemData* p) {
+static void free_PoemData(PoemData* p)
+{
     free(p->title);
     free(p->date);
     for (size_t i = 0; i < p->verse_count; i++) free(p->verses[i]);
     free(p->verses);
 }
 
-// the poem txt file structure should be:
-/*    title \n
-      empty line \n
-      verses (stanzas split by empty line) \n
-      empty line \n
-      date
-*/
-static int parse_poem_file(const char* filename, PoemData* poem) {
+// title / blank / verses (stanzas split by blank lines) / blank / date
+static int parse_poem_file(const char* filename, PoemData* poem)
+{
     char* data = read_file(filename);
     if (!data) return 0;
 
-    // normalize windows line endings goddamnnnnnnnnnnnnnnnnnnnn
+    // normalize windows line endings
     char* w = data;
     for (char* r = data; *r; r++)
     {
@@ -140,7 +173,7 @@ static int parse_poem_file(const char* filename, PoemData* poem) {
         }
     }
 
-    // date is last non empty line in txt file
+    // the date is the last non-empty line of the file
     size_t date_idx = n;
     for (size_t j = n; j > 1; j--)
     {
@@ -154,7 +187,8 @@ static int parse_poem_file(const char* filename, PoemData* poem) {
     poem->title = non_evil_strdup(lines[0]);
     poem->date  = non_evil_strdup(date_idx < n ? lines[date_idx] : "");
 
-    // everything in between is verses, split by blank lines and each verse keeps its lines joined with newline char
+    // everything in between is verses, split by blank lines
+    // each verse keeps its lines joined with '\n'
     poem->verses = malloc(n * sizeof(char*));
     poem->verse_count = 0;
 
@@ -183,13 +217,16 @@ static int parse_poem_file(const char* filename, PoemData* poem) {
     return 1;
 }
 
-static char* render_poem(PoemData* poem) {
+static char* render_poem(PoemData* poem)
+{
     char* html = non_evil_strdup("");
     size_t len = 0;
 
     for (size_t i = 0; i < poem->verse_count; i++)
     {
-        char* verse = escape_html(poem->verses[i]);
+        char* escaped = escape_html(poem->verses[i]);
+        char* verse = keep_indents(escaped);
+        free(escaped);
         verse = replace_all(verse, "\n", "<br>\n");
 
         append_str(&html, &len, "<p>");
@@ -202,7 +239,8 @@ static char* render_poem(PoemData* poem) {
     return html;
 }
 
-static char* make_output_filename(const char* title) {
+static char* make_output_filename(const char* title)
+{
     size_t len = strlen(title);
     char* out = malloc(len + 6);
 
@@ -220,7 +258,7 @@ static char* make_output_filename(const char* title) {
 int main(int argc, char** argv) {
     if (argc != 2)
     {
-        printf("usage: %s <txt file>", argv[0]);
+        printf("usage: %s <poem txt file>", argv[0]);
         return 1;
     }
 
@@ -238,9 +276,9 @@ int main(int argc, char** argv) {
     char* date  = escape_html(poem.date);
     char* body  = render_poem(&poem);
 
+    // poem goes last so verse text is never scanned for blueprints
     template = replace_all(template, TITLE_BLUEP, title);
     template = replace_all(template, DATE_BLUEP, date);
-    // poem goes last so verse text is never scanned for blueprints #ACCOUNTING FOR EXPERIMENTELLEPOESIE
     template = replace_all(template, POEM_BLUEP, body);
 
     char* out_name = make_output_filename(poem.title);

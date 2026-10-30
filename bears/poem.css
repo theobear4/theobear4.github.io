@@ -9,20 +9,19 @@
     --w: 3px;    /* line thickness */
     --g: 6px;    /* gap between line ends and the corner img */
     --py: 130px; /* vertical padding, clears the flower cluster only */
-    /*
-                   --px and --tw were moved to the root scope so we can use them in the gallery's css too
-   */
 
     position: relative;
     box-sizing: border-box;
     width: min(calc(var(--tw) + 2 * var(--px)), 100%); /* text column + padding, capped at screen width */
     max-width: 100%;
     min-width: calc(2 * var(--cw) + var(--g));
-    aspect-ratio: 1 / 1.4; /* legit am furat aspect ratio-ul de la o pagină europeană (1/sqrt(2)). sper că va fi ok lol */
     padding: var(--py) var(--px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+}
+.frame::before {
+    content: "";
+    grid-area: 1 / 1;
+    padding-top: calc(140% + 2.8 * var(--px) - 2 * var(--py));
 }
 
 .corner {
@@ -51,6 +50,8 @@
 .bright { right: 5px; }
 
 .content {
+    grid-area: 1 / 1;
+    align-self: center;
     text-align: left;
 }
 .content h1 {
