@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: [i stand in the sun]</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>[i stand in the sun]</h1>
+                    <p>i wait in the sun<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hoping to bloom</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;it bears my eyes shut</p>
+<p>and braids my hair<br>
+&nbsp;&nbsp;&nbsp;&nbsp;together with my fingers</p>
+<p>&nbsp;it forms a leather bracelet<br>
+&nbsp;&nbsp;&nbsp;&nbsp;out of my wrongs and my rights,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+black leather on ply-wood skies.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;orange-lit tobacco,</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long way to fly.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;i wrote a letter one year ago<br>
+but the ink hasn’t dried.</p>
+<p>i imagine myself purple / i imagine myself warm.<br>
+i imagine myself just peel and core.<br>
+i imagine myself wooden / i imagine myself small.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to protect from the cold<br>
+burn all your clothes</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make yourself float in dark water<br>
+and watch the smoking shore move, engulf.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;i press my chest against the sea floor<br>
+to make my ribs bruised and back sore. </p>
+
+                </div>
+                <small class="date">19 june 2025</small>
+            </div>
+            <br>
+            <div class="gallery">
+                <img src="/assets/theobear.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

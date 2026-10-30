@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: [tissue paper skin]</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>[tissue paper skin]</h1>
+                    <p>tissue paper skin<br>
+tears asunder under a lamppost. <br>
+glowing barley head of hair <br>
+emanating waves of smoke</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;— and the smoke engulfs. </p>
+<p>let us play a game<br>
+where one of us is a killer, <br>
+the other, rightfully, killed. <br>
+cause of death etched in stone :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;drowned by the smoke. </p>
+<p>time is a zone<br>
+and the past is a yellow house<br>
+on the roof, cat and mouse<br>
+lovingly play a ruleless game. </p>
+<p>my heart is a root<br>
+deep under a fern tree<br>
+a titmouse on the foliage sings <br>
+as the cat goes for the kill. </p>
+
+                </div>
+                <small class="date">july 2026</small>
+            </div>
+            <br>
+            <div class="gallery">
+                <img src="/assets/theobear.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

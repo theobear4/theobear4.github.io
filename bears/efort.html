@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: efort</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>efort</h1>
+                    <p>când nu știu pe ce cale s-o apuc<br>
+mă uit în spate, nu în față. <br>
+mă milogesc de  aer să mă <br>
+dezbrace / desfacă / destrame, <br>
+pînă cînd trunchiul meu amorțit  <br>
+pare ceva de mult trecut, de puțin redobîndit. </p>
+<p>și ling acest aer, acest vînt. <br>
+îmi mișc degetele în ritmuri de dans <br>
+și caut o nouă zonă de timp. <br>
+mă uit peste umeri, pe unde oare să o iau,<br>
+de parcă nu fuseseră toate cele <br>
+greșite. toate latitudinile m-au adus <br>
+de unde am început, în piațeta <br>
+unde am văzut prima oară degete <br>
+fumurii cu cenușă, degete roșii cu foc, <br>
+gît secetos, picioarele împreunate lîngă <br>
+frații mei. unde mexicanca părea că <br>
+arde de vie. unde pielea-i părea <br>
+izvor de apă și de sînge cu mult<br>
+înainte să ne strîngem noi doi, ca să ne uităm <br>
+(în doi) la ea. mă uit în spate pentru următoarea<br>
+greșeală, ca să aflu cum să ajung eu să <br>
+fiu următoarea mexicancă care arde. <br>
+femeie făcută să ardă. bărbat făcut să <br>
+ardă. și mă uit prin spate, și doar poate<br>
+&nbsp;o să-mi dau seama cum de ajuns iarăși <br>
+în piațeta asta. </p>
+<p>aici m-am născut. nouăsprezece ani<br>
+aici i-am petrecut. așteptînd să ard. <br>
+femeie / bărbat. femeie / bărbat. <br>
+mă gîndesc într-o limbă <br>
+pe care nici nu pot să o înțeleg. <br>
+și de cînd sunt mică, am fost un șoricel. </p>
+<p>spațiul dintre mine și trotuar<br>
+se micșora din ce în ce<br>
+și n-am reușit niciodată<br>
+a fost în zadar, în zadar.</p>
+<p>cu sacoul de catifea pe umeri,<br>
+ca să arzi, doar ca să arzi. </p>
+<p>// </p>
+<p>cînd îți dai jos ochelarii,<br>
+e ca să nu vezi detaliile feței<br>
+după care plîngi de mori.<br>
+fă-mă pată. </p>
+
+                </div>
+                <small class="date">noiembrie 2025</small>
+            </div>
+            <br>
+            <div class="gallery">
+                <img src="/assets/theobear.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: [i wish i was born a boy]</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+        <style>
+            .content p {
+            /* --melt goes from 0 to 1 */
+            filter: blur(calc(var(--melt, 0) * 3px));
+            opacity: calc(1 - var(--melt, 0) * 0.7);
+            transform: scaleY(calc(1 + var(--melt, 0) * 0.5));
+            transform-origin: top;
+            margin-bottom: calc(1em + var(--melt, 0) * 0.8em);
+            }
+
+            hr {
+                border: none;
+                height: 1px;
+                width: 80px;
+                background-color: #ad45a7;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>i wish i was born a drunk boy</h1>
+                        <p>i wish i was born a boy<br>
+                        to<br>
+                        look in your eyes and<br>
+                        at the teeth sweet as charcoal</p>
+                    <p >and not feel<br>
+                        shame</p>
+                    <p style="--melt: 0.1">but everytime the needle</p>
+                    <p style="--melt: 0.2">deeps deep into my fleash</p>
+                    <p style="--melt: 0.3">i qoukd stil  loon roenoy in every corbery<br>
+                        eveyr vrefice<br>
+                        beauaebib lovevtou<br>
+                        but i cant<br>
+                        not  allowes to</p>
+                    <p style="--melt: 0.4">eveurbtjiuhrhib inalreadh know ownto<br>
+                        killl myseknd</p>
+                </div>
+                <small class="date">3 september 2023</small>
+            </div>
+            <hr style="margin: 10px auto 0;">
+            <p>a reiteration of a poem with the same name, written just at my sister's wedding, after drinking enough for me to lose my memory around the middle of writing it.<p>
+</p>
+            <hr style="margin: 0;">
+            <br>
+            <div class="gallery">
+                <img src="/assets/theobear.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

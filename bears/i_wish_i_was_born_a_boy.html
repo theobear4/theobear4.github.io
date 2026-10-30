@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: i wish i was born a boy</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>i wish i was born a boy</h1>
+                    <p>i wish i was born a boy<br>
+i would have been your boy</p>
+<p>and i'd look in your unhappy eyes,<br>
+at your teeth - sweet as charcoal,</p>
+<p>and plant a touch on your head<br>
+that's been fermenting in my lips</p>
+<p>&nbsp;for ages,</p>
+<p>without shame. dar cu frică.<br>
+cu credință și cu dragoste. </p>
+<p>i ask you to stay alert. because <br>
+you've turned your back to the </p>
+<p>fire and if you're not careful <br>
+its flame will mark your spotty </p>
+<p>spine.</p>
+<p>but until then i'll calculate the<br>
+way my limbs hang from my </p>
+<p>tree trunk middle so that they<br>
+hang just as the branches loaded</p>
+<p>with pomegranates you like <br>
+hang over the mud where you </p>
+<p>fed me peaches.</p>
+
+                </div>
+                <small class="date">september 2023</small>
+            </div>
+            <br>
+            <div class="gallery">
+                <img src="/assets/theobear.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

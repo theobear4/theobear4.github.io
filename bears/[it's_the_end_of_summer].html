@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>theobear: [it's the end of summer]</title>
+        <link rel="stylesheet" href="/styles.css"/>
+        <link rel="stylesheet" href="poem.css"/>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="frame">
+                <img class="corner tl" src="/assets/poem_corner.png">
+                <img class="corner tr" src="/assets/poem_corner.png">
+                <img class="corner br" src="/assets/poem_corner.png">
+                <img class="corner bl" src="/assets/poem_corner.png">
+                <i class="bline bleft"></i>
+                <i class="bline bright"></i>
+                <div class="content">
+                    <h1>[it's the end of summer]</h1>
+                    <p>it’s the end of summer and i’m wearing <br>
+the shirt you cut myself in </p>
+<p>(did you wash the blood <br>
+off its hem) </p>
+<p>i’m mistaken for two different names<br>
+and none of them belong to me. my nails turn blue</p>
+<p>in the morning <br>
+pink at night.</p>
+<p>i wish that the leaves here turned yellow from green <br>
+but it’s just the sheer layer of skin over ragged train tracks</p>
+<p>that changes its color. <br>
+the space bends around</p>
+<p>you and me and the strip of all the lies you whispered in me<br>
+wraps around my head like a bow, take it and rip it and hang me </p>
+<p>from my ceiling with it,<br>
+hang me until i drip and make</p>
+<p>a low bridge over your nose. </p>
+
+                </div>
+                <small class="date">september 2023</small>
+            </div>
+            <br>
+            <div class="gallery">
+                <img src="/assets/theobear.jpg">
+            </div>
+            <div style="padding-top: 50px;" class="line">
+                ← <a class="link" href="/poems.html">poems</a>
+                •
+                <a class="link" href="/">homepage</a> ⌂
+            </div>
+            <script>
+                const galleryImages = document.querySelectorAll('.gallery img');
+                galleryImages.forEach(image => {
+                    image.addEventListener("click", (event) => {
+                        window.open(event.target.src, "_blank");
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>
